@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useForm, ValidationError } from '@formspree/react';
-import { BookOpen, Globe2, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
+import { BookOpen, Globe2, CheckCircle2, ArrowRight, Sparkles, Globe, Star, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // --- Types ---
@@ -59,7 +59,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, descriptio
 };
 
 const WaitlistForm: React.FC = () => {
-  const [state, handleSubmit] = useForm("https://formspree.io/f/xbdaoojo");
+  // Replace with your actual Formspree ID
+  const [state, handleSubmit] = useForm("xbdaoojo");
 
   if (state.succeeded) {
     return (
@@ -79,6 +80,16 @@ const WaitlistForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {/* UPGRADE: Value Hooks directly in form */}
+      <div className="grid grid-cols-1 gap-2 mb-6">
+        {['Priority Beta Access', 'Founding Member Badge', 'Lifetime Discount'].map((perk, i) => (
+          <div key={i} className="flex items-center gap-2 text-left bg-emerald-50/50 p-2 px-3 rounded-xl border border-emerald-100/50">
+            <Check size={14} className="text-emerald-600" />
+            <span className="text-[10px] font-black text-emerald-800 uppercase tracking-wider">{perk}</span>
+          </div>
+        ))}
+      </div>
+
       <div className="group">
         <input 
           id="full-name"
@@ -125,10 +136,16 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#FDFDFC]/80 backdrop-blur-md border-b border-stone-100">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-          <div className="flex items-center gap-2.5">
-              
-              <div className="text-2xl font-black tracking-tighter text-emerald-800">Mfi.</div>
-                     
+          <div className="flex items-center gap-3">
+            <Image 
+              src="/logo.png"
+              alt="Mfi Logo"
+              width={32}
+              height={32}
+              priority
+              className="rounded-lg object-contain"
+            />
+            <div className="text-2xl font-black tracking-tighter text-emerald-800">Mfi.</div>
           </div>
           
           <div className="hidden md:flex items-center gap-10">
@@ -146,36 +163,54 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <header className="relative pt-44 pb-32 px-6 overflow-hidden">
-        {/* Subtle background decoration */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-50 rounded-full blur-[120px] opacity-60" />
           <div className="absolute bottom-0 right-[-5%] w-[30%] h-[30%] bg-orange-50 rounded-full blur-[100px] opacity-60" />
         </div>
 
         <div className="max-w-6xl mx-auto text-center">
+          {/* UPGRADE: Social Proof Avatar Stack */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 text-sm font-bold mb-8 border border-emerald-100"
+            className="flex items-center justify-center gap-3 mb-8"
           >
-            <Sparkles size={16} />
-            The Future of Heritage
+            <div className="flex -space-x-2.5">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="w-9 h-9 rounded-full border-2 border-[#FDFDFC] bg-emerald-100 flex items-center justify-center text-[10px] font-bold text-emerald-700 uppercase shadow-sm">
+                  {String.fromCharCode(64 + i)}
+                </div>
+              ))}
+            </div>
+            <p className="text-sm font-bold text-slate-400">
+              <span className="text-emerald-600">500+</span> early learners already joined
+            </p>
           </motion.div>
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-6xl md:text-[7rem] font-serif font-medium tracking-tight mb-8 leading-[0.85] text-slate-900"
+            className="text-6xl md:text-[7.5rem] font-serif font-medium tracking-tight mb-4 leading-[0.85] text-slate-900"
           >
-            Learn Ibibio the <br />
-            <span className="italic font-light text-emerald-600">modern way.</span>
+            The Future of <br />
+            <span className="italic font-light text-emerald-600">African Heritage.</span>
           </motion.h1>
+
+          {/* UPGRADE: Clarifier line */}
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-emerald-800/60 font-black uppercase tracking-[0.25em] text-[10px] md:text-xs mb-10"
+          >
+            The premier platform for interactive Ibibio mastery.
+          </motion.p>
 
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
             className="text-xl md:text-2xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             Built for the diaspora and the home-grown. Reclaiming our heritage through code, culture, and community.
@@ -184,20 +219,40 @@ export default function LandingPage() {
           <motion.div 
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
-             transition={{ delay: 0.3 }}
+             transition={{ delay: 0.4 }}
           >
-            <a href="#join" className="bg-emerald-600 text-white px-12 py-6 rounded-2xl font-bold text-xl hover:bg-emerald-700 hover:shadow-2xl hover:shadow-emerald-200 transition-all inline-block">
+            <a href="#join" className="bg-emerald-600 text-white px-12 py-6 rounded-2xl font-bold text-xl hover:bg-emerald-700 hover:shadow-2xl hover:shadow-emerald-200 transition-all inline-block active:scale-95">
               Secure My Early Access
             </a>
           </motion.div>
         </div>
       </header>
 
+      {/* UPGRADE: Identity alignment Section */}
+      <section className="py-24 bg-emerald-50/30 border-y border-stone-100">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-center text-xs font-black uppercase tracking-[0.3em] text-emerald-800/40 mb-12">Built For The Global Family</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            {[
+              { label: "Diaspora Roots", icon: <Globe size={20}/> },
+              { label: "Heritage Learners", icon: <Star size={20}/> },
+              { label: "Curious Travelers", icon: <Sparkles size={20}/> },
+              { label: "Academic Students", icon: <BookOpen size={20}/> }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-3xl border border-stone-100 flex flex-col items-center text-center gap-4 hover:shadow-xl transition-shadow">
+                <div className="text-emerald-600 bg-emerald-50 p-3 rounded-2xl">{item.icon}</div>
+                <span className="font-bold text-slate-800 text-sm">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Mission Section */}
       <section id="mission" className="py-32 bg-slate-900 text-stone-100">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-serif mb-8 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-serif mb-8 leading-tight text-white">
               Language is the <span className="text-emerald-400 italic">DNA</span> of our culture.
             </h2>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
@@ -210,7 +265,7 @@ export default function LandingPage() {
           </div>
           <div className="relative">
              <div className="aspect-square bg-emerald-800/20 rounded-[3rem] border border-emerald-500/20 overflow-hidden flex items-center justify-center p-12">
-                <span className="text-[10rem] opacity-20 select-none">Mfi</span>
+                <span className="text-[10rem] font-serif italic opacity-10 select-none text-emerald-400">Mfi</span>
                 <div className="absolute inset-0 bg-gradient-to-tr from-emerald-900/40 to-transparent" />
              </div>
           </div>
@@ -220,7 +275,7 @@ export default function LandingPage() {
       {/* Features Section */}
       <section id="how-it-works" className="py-32 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="text-4xl font-serif font-medium mb-4">Why Mfi?</h2>
+          <h2 className="text-4xl font-serif font-medium mb-4">The Experience</h2>
           <p className="text-slate-500">Traditional learning meets modern technology.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
@@ -233,7 +288,7 @@ export default function LandingPage() {
       {/* Impact Section */}
       <section className="px-6 py-20">
         <div className="max-w-7xl mx-auto bg-emerald-50 rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden">
-          <h2 className="text-5xl md:text-7xl font-serif italic text-emerald-900/20 absolute top-10 left-1/2 -translate-x-1/2 select-none">
+          <h2 className="text-5xl md:text-7xl font-serif italic text-emerald-900/10 absolute top-10 left-1/2 -translate-x-1/2 select-none">
             Nsido?
           </h2>
           <div className="relative z-10">
@@ -246,15 +301,15 @@ export default function LandingPage() {
 
       {/* Join Section */}
       <section id="join" className="py-32 px-6">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center bg-white p-4 md:p-16 rounded-[4rem] shadow-[0_50px_100px_rgba(0,0,0,0.04)] border border-stone-100">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center bg-white p-8 md:p-16 rounded-[4rem] shadow-[0_50px_100px_rgba(0,0,0,0.04)] border border-stone-100">
           <div>
-            <h2 className="text-4xl font-serif mb-6 text-slate-900">Start your journey.</h2>
+            <h2 className="text-4xl font-serif mb-6 text-slate-900 leading-tight">Secure your spot <br/>in the first cohort.</h2>
             <p className="text-slate-500 text-lg leading-relaxed mb-8">
-              Join over 500+ early supporters. No spam, just progress updates and an invitation to our private beta.
+              Become a founding member of the movement. No spam, just progress updates and an invitation to our private beta.
             </p>
             <div className="space-y-4">
-               {['Early access to lessons', 'Community badge', 'Lifetime discount'].map((item) => (
-                 <div key={item} className="flex items-center gap-3 text-slate-700 font-medium">
+               {['Early access to lessons', 'Community founding badge', 'Lifetime early-bird discount'].map((item) => (
+                 <div key={item} className="flex items-center gap-3 text-slate-700 font-bold text-xs uppercase tracking-widest">
                    <CheckCircle2 size={18} className="text-emerald-500" /> {item}
                  </div>
                ))}
@@ -269,7 +324,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-2xl font-bold mb-6 italic text-slate-300">Mfi.</div>
           <p className="text-slate-400 font-medium mb-2">&copy; {new Date().getFullYear()} Mfi Project. Built for the Ibibio People.</p>
-          <p className="text-emerald-600/50 font-bold text-sm tracking-widest uppercase italic">Sosongo (Thank You)</p>
+          <p className="text-emerald-600 font-black text-sm tracking-[0.2em] uppercase italic">Sosongo</p>
         </div>
       </footer>
     </div>
