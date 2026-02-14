@@ -205,7 +205,7 @@ export default function LandingPage() {
             </p>
             <div className="flex gap-4 items-center text-emerald-400 font-bold">
               <div className="w-12 h-px bg-emerald-400/30" />
-              Built for Uyo and the World
+              Built for Akwa Ibom and the World
             </div>
           </div>
           <div className="relative">
