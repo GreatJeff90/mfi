@@ -13,13 +13,14 @@ export default function LandingPage() {
       
       {/* --- 1. HERO SECTION --- */}
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <Image 
             src="/logo.png" 
             alt="Mfi Logo" 
             width={32} 
             height={32} 
-            className="rounded-lg"
+            priority
+            className="rounded-lg object-contain"
           />
           <div className="text-2xl font-black tracking-tighter text-emerald-800">Mfi.</div>
         </div>
