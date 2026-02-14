@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { useForm, ValidationError } from '@formspree/react';
 import { BookOpen, Users, Globe2, CheckCircle2 } from 'lucide-react';
 
 export default function LandingPage() {
-  // 💡 REPLACE "YOUR_FORMSPREE_ID" with your actual ID
   const [state, handleSubmit] = useForm("https://formspree.io/f/xbdaoojo");
 
   return (
@@ -13,7 +13,16 @@ export default function LandingPage() {
       
       {/* --- 1. HERO SECTION --- */}
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center">
-        <div className="text-2xl font-black tracking-tighter text-emerald-800">Mfi.</div>
+        <div className="flex items-center gap-2">
+          <Image 
+            src="/logo.png" 
+            alt="Mfi Logo" 
+            width={32} 
+            height={32} 
+            className="rounded-lg"
+          />
+          <div className="text-2xl font-black tracking-tighter text-emerald-800">Mfi.</div>
+        </div>
         <a 
           href="#join" 
           className="hidden sm:block text-sm font-bold bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full border border-emerald-100 hover:bg-emerald-100 transition"
