@@ -137,14 +137,14 @@ export default function LandingPage() {
       <nav className="fixed top-0 w-full z-50 bg-[#FDFDFC]/80 backdrop-blur-md border-b border-stone-100">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <Image 
+            {/* <Image 
               src="/logo.png"
               alt="Mfi Logo"
               width={32}
               height={32}
               priority
               className="rounded-lg object-contain"
-            />
+            /> */}
             <div className="text-2xl font-black tracking-tighter text-emerald-800">Mfi.</div>
           </div>
           
