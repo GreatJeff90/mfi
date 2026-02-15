@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, {useState} from 'react';
 import Image from 'next/image';
 import { useForm, ValidationError } from '@formspree/react';
-import { BookOpen, Globe2, CheckCircle2, ArrowRight, Sparkles, Globe, Star, Check } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { BookOpen, Globe2, CheckCircle2, ArrowRight, Sparkles, Globe, Star, Check, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Types ---
 interface FeatureCardProps {
@@ -128,10 +128,14 @@ const WaitlistForm: React.FC = () => {
 };
 
 export default function LandingPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   return (
     <div className="min-h-screen bg-[#FDFDFC] text-slate-900 selection:bg-emerald-100 font-sans selection:text-emerald-900">
       
       {/* Navigation */}
+       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#FDFDFC]/80 backdrop-blur-md border-b border-stone-100">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <div className="flex items-center gap-3">
@@ -146,6 +150,7 @@ export default function LandingPage() {
             <div className="text-2xl font-black tracking-tighter text-emerald-800">Mfi.</div>
           </div>
           
+          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-10">
             {NAV_LINKS.map(({ href, label }) => (
               <a key={href} href={href} className="text-sm font-semibold text-slate-500 hover:text-emerald-600 transition-colors uppercase tracking-widest">
@@ -156,7 +161,48 @@ export default function LandingPage() {
               Join Waitlist
             </a>
           </div>
+
+          {/* Mobile Hamburger Button */}
+          <button 
+            className="md:hidden p-2 text-slate-600 hover:text-emerald-600 transition-colors"
+            onClick={toggleMenu}
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white border-b border-stone-100 overflow-hidden"
+            >
+              <div className="flex flex-col p-6 gap-6">
+                {NAV_LINKS.map(({ href, label }) => (
+                  <a 
+                    key={href} 
+                    href={href} 
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-lg font-bold text-slate-600 hover:text-emerald-600 transition-colors"
+                  >
+                    {label}
+                  </a>
+                ))}
+                <a 
+                  href="#join" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="bg-emerald-600 text-white px-6 py-4 rounded-2xl text-center font-bold shadow-lg shadow-emerald-100"
+                >
+                  Join Waitlist
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
