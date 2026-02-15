@@ -24,7 +24,7 @@ const FEATURES = [
   {
     icon: BookOpen,
     title: 'Native Mastery',
-    description: 'Master pronunciation with high-fidelity audio from native Ibibio speakers.',
+    description: 'Master pronunciation with high-fidelity audio from native speakers.',
   },
   {
     icon: CheckCircle2,
@@ -34,7 +34,7 @@ const FEATURES = [
   {
     icon: Globe2,
     title: 'Community First',
-    description: 'Connect with a global network of learners reclaiming their Ibibio roots.',
+    description: 'Connect with a global network of learners reclaiming their roots.',
   },
 ] as const;
 
@@ -59,7 +59,6 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, descriptio
 };
 
 const WaitlistForm: React.FC = () => {
-  // Replace with your actual Formspree ID
   const [state, handleSubmit] = useForm("xbdaoojo");
 
   if (state.succeeded) {
@@ -80,7 +79,6 @@ const WaitlistForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* UPGRADE: Value Hooks directly in form */}
       <div className="grid grid-cols-1 gap-2 mb-6">
         {['Priority Beta Access', 'Founding Member Badge', 'Lifetime Discount'].map((perk, i) => (
           <div key={i} className="flex items-center gap-2 text-left bg-emerald-50/50 p-2 px-3 rounded-xl border border-emerald-100/50">
@@ -137,14 +135,14 @@ export default function LandingPage() {
       <nav className="fixed top-0 w-full z-50 bg-[#FDFDFC]/80 backdrop-blur-md border-b border-stone-100">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            {/* <Image 
+            <Image 
               src="/logo.png"
               alt="Mfi Logo"
               width={32}
               height={32}
               priority
               className="rounded-lg object-contain"
-            /> */}
+            />
             <div className="text-2xl font-black tracking-tighter text-emerald-800">Mfi.</div>
           </div>
           
@@ -169,7 +167,6 @@ export default function LandingPage() {
         </div>
 
         <div className="max-w-6xl mx-auto text-center">
-          {/* UPGRADE: Social Proof Avatar Stack */}
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -193,18 +190,17 @@ export default function LandingPage() {
             transition={{ delay: 0.1 }}
             className="text-6xl md:text-[7.5rem] font-serif font-medium tracking-tight mb-4 leading-[0.85] text-slate-900"
           >
-            The Future of <br />
-            <span className="italic font-light text-emerald-600">African Heritage.</span>
+            Africa’s Language <br />
+            <span className="italic font-light text-emerald-600">Learning Platform.</span>
           </motion.h1>
 
-          {/* UPGRADE: Clarifier line */}
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
             className="text-emerald-800/60 font-black uppercase tracking-[0.25em] text-[10px] md:text-xs mb-10"
           >
-            The premier platform for interactive Ibibio mastery.
+            Starting with Ibibio, Eket, Anaang, and Oron — expanding across West Africa.
           </motion.p>
 
           <motion.p 
@@ -213,7 +209,7 @@ export default function LandingPage() {
             transition={{ delay: 0.3 }}
             className="text-xl md:text-2xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
-            Built for the diaspora and the home-grown. Reclaiming our heritage through code, culture, and community.
+            Built for the diaspora and the home-grown. We are building the cultural infrastructure to reclaim our heritage through code and community.
           </motion.p>
 
           <motion.div 
@@ -228,7 +224,7 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* UPGRADE: Identity alignment Section */}
+      {/* Identity Upgrade Section */}
       <section className="py-24 bg-emerald-50/30 border-y border-stone-100">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-center text-xs font-black uppercase tracking-[0.3em] text-emerald-800/40 mb-12">Built For The Global Family</h2>
@@ -239,7 +235,7 @@ export default function LandingPage() {
               { label: "Curious Travelers", icon: <Sparkles size={20}/> },
               { label: "Academic Students", icon: <BookOpen size={20}/> }
             ].map((item, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-3xl border border-stone-100 flex flex-col items-center text-center gap-4 hover:shadow-xl transition-shadow">
+              <div key={idx} className="bg-white p-6 rounded-3xl border border-stone-100 flex flex-col items-center text-center gap-4 hover:shadow-xl transition-shadow shadow-sm">
                 <div className="text-emerald-600 bg-emerald-50 p-3 rounded-2xl">{item.icon}</div>
                 <span className="font-bold text-slate-800 text-sm">{item.label}</span>
               </div>
@@ -256,11 +252,11 @@ export default function LandingPage() {
               Language is the <span className="text-emerald-400 italic">DNA</span> of our culture.
             </h2>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Mfi isn't just an app; it's a digital sanctuary for the Ibibio language. We’re bridging the gap between generations with tools that make learning feel like play.
+              Mfi isn't just an app; it's a digital sanctuary for our heritage. We’re bridging the gap between generations with tools that make learning feel like play.
             </p>
             <div className="flex gap-4 items-center text-emerald-400 font-bold">
               <div className="w-12 h-px bg-emerald-400/30" />
-              Built for Akwa Ibom and the World
+              Built for West Africa and the World
             </div>
           </div>
           <div className="relative">
@@ -276,7 +272,7 @@ export default function LandingPage() {
       <section id="how-it-works" className="py-32 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl font-serif font-medium mb-4">The Experience</h2>
-          <p className="text-slate-500">Traditional learning meets modern technology.</p>
+          <p className="text-slate-500">Traditional mastery meets modern technology.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {FEATURES.map((feature, index) => (
@@ -323,7 +319,7 @@ export default function LandingPage() {
       <footer className="py-20 text-center border-t border-stone-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-2xl font-bold mb-6 italic text-slate-300">Mfi.</div>
-          <p className="text-slate-400 font-medium mb-2">&copy; {new Date().getFullYear()} Mfi Project. Built for the Ibibio People.</p>
+          <p className="text-slate-400 font-medium mb-2">&copy; {new Date().getFullYear()} Mfi Project. Built with love.</p>
           <p className="text-emerald-600 font-black text-sm tracking-[0.2em] uppercase italic">Sosongo</p>
         </div>
       </footer>
